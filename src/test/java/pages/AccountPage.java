@@ -12,10 +12,13 @@ public class AccountPage {
     WebElement firstNameInput;
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public AccountPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, 2);
+        wait.until(ExpectedConditions.urlContains("customer/info"));
     }
 
     public String getFirstName() {

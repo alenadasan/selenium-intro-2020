@@ -1,5 +1,7 @@
-package test;
+package tests;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,11 +18,17 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 public class LoginTest {
 
+    WebDriver driver;
+
+    @BeforeEach
+    public void setUp() {
+        System.setProperty("webdriver.chrome.driver", "/Users/Ale/workspace/chromedriver");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+    }
+
     @Test
     public void validUserCanLogin() {
-        System.setProperty("webdriver.chrome.driver", "/Users/Ale/workspace/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.get("https://demo.nopcommerce.com/login");
 
         LoginPage loginPage = new LoginPage(driver);
@@ -28,23 +36,18 @@ public class LoginTest {
         AccountPage accountPage = loginPage.getHeader().clickMyAccount();
 
         assertThat(accountPage.getFirstName(), is("Rali"));
-
-        driver.quit();
     }
 
     @Test
     public void newlyCreatedUserCanLogin() {
-        System.setProperty("webdriver.chrome.driver", "/Users/Ale/workspace/chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        String email = UUID.randomUUID().toString().substring(0, 16) + "@mailnesia.com";
+        System.out.println(email);
+        String password = "123456";
 
         driver.get("https://demo.nopcommerce.com/register");
 
-        String email = UUID.randomUUID().toString() + "@mailnesia.com";
-        String password = "123456";
-
         RegisterPage registerPage = new RegisterPage(driver);
-        RegistrationResultPage resultPage = registerPage.registerAs("Dummy", "Johnson",
+        RegistrationResultPage resultPage = registerPage.registerAs("male", "Dummy", "Johnson",
                 "12", "January", "1989", email, "Food Inc.",
                 password, password);
 
@@ -57,7 +60,10 @@ public class LoginTest {
         AccountPage account = new AccountPage(driver);
 
         assertThat(account.getFirstName(), is("Dummy"));
+    }
 
+    @AfterEach
+    public void tearDown() {
         driver.quit();
     }
 }

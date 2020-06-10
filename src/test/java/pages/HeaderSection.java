@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,5 +42,10 @@ public class HeaderSection {
     public void logOut() {
         wait.until(ExpectedConditions.textToBePresentInElement(headerLinks.get(1), "Log out"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", headerLinks.get(1));
+    }
+
+    public String getMessageFromAlert() {
+        Alert alert = driver.switchTo().alert();
+        return alert.getText();
     }
 }

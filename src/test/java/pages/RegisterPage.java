@@ -49,16 +49,16 @@ public class RegisterPage {
         PageFactory.initElements(driver, this);
     }
 
-    public RegistrationResultPage registerAs(String firstName, String lastName,
+    public RegistrationResultPage registerAs(String gender, String firstName, String lastName,
                                              String day, String month, String year,
                                              String email, String company,
                                              String password, String confirmPassword) {
-
+        selectGender(gender);
         firstNameInput.sendKeys(firstName);
         lastNameInput.sendKeys(lastName);
-        selectOptionFromDropdownDay(day);
-        selectOptionFromDropdownMonth(month);
-        selectOptionFromDropdownYear(year);
+        selectDayFromDropdown(day);
+        selectMonthFromDropdown(month);
+        selectYearFromDropdown(year);
         emailInput.sendKeys(email);
         companyInput.sendKeys(company);
         newsletterBox.click();
@@ -70,24 +70,23 @@ public class RegisterPage {
     }
 
     public void selectGender(String gender) {
-
-        if (gender.equals("male")) {
+        if (gender.equalsIgnoreCase("male")) {
             genderRadioButtons.get(0).click();
         } else genderRadioButtons.get(1).click();
     }
 
 
-    public void selectOptionFromDropdownDay(String option) {
+    public void selectDayFromDropdown(String option) {
         Select dateDaySelector = new Select(daySelector);
         dateDaySelector.selectByVisibleText(option);
     }
 
-    public void selectOptionFromDropdownMonth(String option) {
+    public void selectMonthFromDropdown(String option) {
         Select dateMonthSelector = new Select(monthSelector);
         dateMonthSelector.selectByVisibleText(option);
     }
 
-    public void selectOptionFromDropdownYear(String option) {
+    public void selectYearFromDropdown(String option) {
         Select dateYearSelector = new Select(yearSelector);
         dateYearSelector.selectByVisibleText(option);
     }
