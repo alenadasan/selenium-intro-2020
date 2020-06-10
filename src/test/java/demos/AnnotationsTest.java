@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 /**
  * Created by Ale on 26/07/17.
  */
-public class AnnotationsTest {
+public class AnnotationsTest extends AnnotationsTestBase {
     @BeforeAll
     public static void classSetUp() {
         System.out.println("Before Class");

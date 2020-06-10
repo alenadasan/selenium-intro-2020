@@ -5,24 +5,17 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class HeaderSection {
+public class HeaderSection extends PageBase{
 
     @FindBy(xpath = "//*[@class='header-links']//a")
     private List<WebElement> headerLinks;
 
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     public HeaderSection(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, 3);
+        super(driver);
     }
 
     public AccountPage clickMyAccount() {

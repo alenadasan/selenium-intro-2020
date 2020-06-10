@@ -1,10 +1,7 @@
 package tests;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AccountPage;
 import pages.LoginPage;
 import pages.RegisterPage;
@@ -16,14 +13,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-public class LoginTest {
-
-    WebDriver driver;
+public class LoginTest extends TestBase {
 
     @BeforeEach
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/Ale/workspace/chromedriver");
-        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
@@ -60,10 +53,5 @@ public class LoginTest {
         AccountPage account = new AccountPage(driver);
 
         assertThat(account.getFirstName(), is("Dummy"));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.quit();
     }
 }

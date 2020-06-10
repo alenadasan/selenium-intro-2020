@@ -3,13 +3,12 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegisterPage {
+public class RegisterPage extends PageBase{
 
     @FindBy(name = "Gender")
     private List<WebElement> genderRadioButtons;
@@ -42,11 +41,8 @@ public class RegisterPage {
     @FindBy(className = "field-validation-error")
     private List<WebElement> listOfAllErrorMessages;
 
-    private WebDriver driver;
-
     public RegisterPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public RegistrationResultPage registerAs(String gender, String firstName, String lastName,

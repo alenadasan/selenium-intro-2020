@@ -1,4 +1,10 @@
 package pages;
 
-public class ResultsPage {
+import org.openqa.selenium.WebDriver;
+
+public class ResultsPage extends PageBase{
+
+    public ResultsPage(WebDriver driver) {
+        super(driver);
+    }
 }

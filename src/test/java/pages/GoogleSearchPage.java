@@ -3,9 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class GoogleSearchPage {
+public class GoogleSearchPage extends PageBase {
 
     @FindBy(name = "q")
     private WebElement searchInput;
@@ -20,17 +19,15 @@ public class GoogleSearchPage {
     @FindBy(partialLinkText = "How Search works")
     private WebElement howSearchWorksLink;
 
-    private WebDriver driver;
 
     public GoogleSearchPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     public ResultsPage searchFor(String query) {
         searchInput.sendKeys(query);
         searchButton.click();
 
-        return new ResultsPage();
+        return new ResultsPage(driver);
     }
 }
