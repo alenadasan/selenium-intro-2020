@@ -5,10 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class RegisterPage extends PageBase{
+public class RegisterPage extends PageBase {
 
     @FindBy(name = "Gender")
     private List<WebElement> genderRadioButtons;
@@ -71,7 +70,6 @@ public class RegisterPage extends PageBase{
         } else genderRadioButtons.get(1).click();
     }
 
-
     public void selectDayFromDropdown(String option) {
         Select dateDaySelector = new Select(daySelector);
         dateDaySelector.selectByVisibleText(option);
@@ -88,10 +86,6 @@ public class RegisterPage extends PageBase{
     }
 
     public List<String> getAllErrorMessages() {
-        List<String> messages = new ArrayList<String>();
-        for (WebElement e : listOfAllErrorMessages) {
-            messages.add(e.getText());
-        }
-        return messages;
+        return getTextFromWebElements(listOfAllErrorMessages);
     }
 }

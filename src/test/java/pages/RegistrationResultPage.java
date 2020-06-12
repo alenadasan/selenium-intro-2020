@@ -4,13 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class RegistrationResultPage extends PageBase{
+public class RegistrationResultPage extends PageBase {
 
     @FindBy(className = "result")
     private WebElement resultMessage;
 
-    private WebDriver driver;
-    private HeaderSection header;
+    private final HeaderSection header;
 
     public RegistrationResultPage(WebDriver driver) {
         super(driver);

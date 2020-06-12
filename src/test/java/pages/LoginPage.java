@@ -4,7 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends PageBase{
+public class LoginPage extends PageBase {
+
     @FindBy(id = "Email")
     private WebElement emailInput;
     @FindBy(id = "Password")
@@ -13,7 +14,6 @@ public class LoginPage extends PageBase{
     private WebElement passwordRecoveryLink;
     @FindBy(xpath = "//input[@class ='button-1 login-button']")
     private WebElement loginButton;
-
     @FindBy(id = "Email-error")
     private WebElement emailError;
     @FindBy(xpath = "//div[contains(@class, 'message-error')]")
@@ -27,6 +27,7 @@ public class LoginPage extends PageBase{
     }
 
     public void loginAs(String user, String password) {
+        waitForWebElementToBeVisible(emailInput);
         emailInput.clear();
         emailInput.sendKeys(user);
         passwordInput.sendKeys(password);

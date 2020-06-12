@@ -14,6 +14,11 @@ public class AnnotationsTestBase {
         System.out.println("Test Base Before Class");
     }
 
+    @AfterAll
+    public static void baseClassTearDown() {
+        System.out.println("Test Base After Class");
+    }
+
     @BeforeEach
     public void baseSetUp() {
         System.out.println("Test Base Before Test Method");
@@ -22,10 +27,5 @@ public class AnnotationsTestBase {
     @AfterEach
     public void baseTearDown() {
         System.out.println("Test Base After Test Method");
-    }
-
-    @AfterAll
-    public static void baseClassTearDown() {
-        System.out.println("Test Base After Class");
     }
 }

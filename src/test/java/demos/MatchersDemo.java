@@ -39,7 +39,6 @@ public class MatchersDemo {
         assertThat(secondString, either(containsString("elit")).or(isEmptyString()));
 
 
-
         List<String> anArraylist = Arrays.asList("First", "Second", "Third");
 
         assertThat(anArraylist, contains("First", "Second", "Third"));
