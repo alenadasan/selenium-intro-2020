@@ -54,6 +54,7 @@ public class HeaderSection extends PageBase {
         for (WebElement item : menuItems) {
             if (item.getText().equalsIgnoreCase(menuItem)) {
                 item.click();
+                break;
             }
         }
     }
