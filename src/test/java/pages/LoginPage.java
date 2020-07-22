@@ -34,8 +34,9 @@ public class LoginPage extends PageBase {
         loginButton.click();
     }
 
-    public String getEmailError() {
-        return emailError.getText();
+    public String getErrorMessage() {
+        waitForWebElementToBeVisible(messageError);
+        return messageError.getText();
     }
 
     public HeaderSection getHeader() {

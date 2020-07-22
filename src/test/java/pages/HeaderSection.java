@@ -9,6 +9,11 @@ import java.util.List;
 
 public class HeaderSection extends PageBase {
 
+    @FindBy(id = "small-searchterms")
+    private WebElement searchInput;
+    @FindBy(xpath = "//input[contains(@class, 'search-box-button')]")
+    private WebElement searchButton;
+
     @FindBy(xpath = "//*[@class='header-links']//a")
     private List<WebElement> headerLinks;
     @FindBy(xpath = "//*[@class='top-menu notmobile']/li/a")
@@ -89,5 +94,12 @@ public class HeaderSection extends PageBase {
         waitForWebElementToBeVisible(headerLinks.get(3));
         Actions actions = new Actions(driver);
         actions.moveToElement(headerLinks.get(3)).perform();
+    }
+
+    public SearchResultsPage searchFor(String query) {
+        searchInput.sendKeys(query);
+        searchButton.click();
+
+        return new SearchResultsPage(driver);
     }
 }

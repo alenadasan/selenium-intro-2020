@@ -59,9 +59,13 @@ public class RegisterPage extends PageBase {
         newsletterBox.click();
         passwordInput.sendKeys(password);
         confirmPasswordInput.sendKeys(confirmPassword);
-        registerButton.click();
+        clickRegisterButton();
 
         return new RegistrationResultPage(driver);
+    }
+
+    public void clickRegisterButton() {
+        registerButton.click();
     }
 
     public void selectGender(String gender) {

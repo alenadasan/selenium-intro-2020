@@ -13,14 +13,20 @@ public class HomePage extends PageBase {
     private List<WebElement> addToCartButtons;
 
     private HeaderSection headerSection;
+    private FooterSection footerSection;
 
     public HomePage(WebDriver driver) {
         super(driver);
         headerSection = new HeaderSection(driver);
+        footerSection = new FooterSection(driver);
     }
 
     public HeaderSection getHeaderSection() {
         return headerSection;
+    }
+
+    public FooterSection getFooterSection() {
+        return footerSection;
     }
 
     public void addToCartProductWithIndex(int index) {

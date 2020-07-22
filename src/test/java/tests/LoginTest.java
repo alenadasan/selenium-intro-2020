@@ -90,7 +90,7 @@ public class LoginTest extends TestBase {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginAs(email, pass);
 
-        assertThat(loginPage.getEmailError(), is(expectedError));
+        assertThat(loginPage.getErrorMessage(), is(expectedError));
     }
 
     static Stream<Arguments> credentialsAndErrorMessagesProvider() {
