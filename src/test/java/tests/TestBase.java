@@ -12,7 +12,7 @@ public class TestBase {
 
     @BeforeEach
     public void baseSetUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/Ale/workspace/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/test/java/resources/chromedriver");
         System.setProperty("webdriver.gecko.driver", "/Users/Ale/workspace/geckodriver");
 
         ChromeOptions chromeOptions = new ChromeOptions();
