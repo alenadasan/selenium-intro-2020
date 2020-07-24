@@ -11,6 +11,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.fail;
+import static utils.Constants.HOME_PAGE_URL;
 
 /**
  * Created by Ale on 07/08/17.
@@ -32,7 +33,7 @@ public class IndexOutOfBoundsExceptionTest extends TestBase {
 
     @Test
     public void canCheckSixthErrorMessage() throws Exception {
-        driver.get("https://demo.nopcommerce.com/register");
+        driver.get(HOME_PAGE_URL);
         RegisterPage signUpPage = new RegisterPage(driver);
         signUpPage.selectGender("male");
         signUpPage.clickRegisterButton();

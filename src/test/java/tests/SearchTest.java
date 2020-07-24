@@ -7,12 +7,13 @@ import pages.SearchResultsPage;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static utils.Constants.HOME_PAGE_URL;
 
 public class SearchTest extends TestBase{
 
     @Test
     void canSearchForAValidProduct() {
-        driver.get("https://demo.nopcommerce.com/");
+        driver.get(HOME_PAGE_URL);
         HomePage homePage = new HomePage(driver);
         SearchResultsPage resultsPage = homePage.getHeaderSection().searchFor("dtdsad");
 
@@ -21,7 +22,7 @@ public class SearchTest extends TestBase{
 
     @Test
     void canSearchForAValidProductName() {
-        driver.get("https://demo.nopcommerce.com/");
+        driver.get(HOME_PAGE_URL);
         HomePage homePage = new HomePage(driver);
         SearchResultsPage resultsPage = homePage.getHeaderSection().searchFor("book");
 

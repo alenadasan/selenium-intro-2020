@@ -18,6 +18,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+import static utils.Constants.*;
 
 public class LoginTest extends TestBase {
 
@@ -28,10 +29,10 @@ public class LoginTest extends TestBase {
 
     @Test
     public void validUserCanLogin() {
-        driver.get("https://demo.nopcommerce.com/login");
+        driver.get(HOME_PAGE_URL + "login");
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.loginAs("ale.nadasan@mailnesia.com", "123456");
+        loginPage.loginAs(TEST_EMAIL, TEST_PASSWORD);
         AccountPage accountPage = loginPage.getHeader().clickMyAccount();
 
         assertThat(accountPage.getFirstName(), is("Dummy"));
@@ -42,7 +43,7 @@ public class LoginTest extends TestBase {
         String email = UUID.randomUUID().toString().substring(0, 16) + "@mailnesia.com";
         String password = "123456";
 
-        driver.get("https://demo.nopcommerce.com/register");
+        driver.get(HOME_PAGE_URL + "register");
 
         RegisterPage registerPage = new RegisterPage(driver);
         RegistrationResultPage resultPage = registerPage.registerAs("male", "Dummy", "Johnson",
@@ -63,21 +64,18 @@ public class LoginTest extends TestBase {
 
     @Test
     public void newlyCreatedTestUserCanLogin() {
-        String email = "ale.nadasan@mailnesia.com";
-        String password = "123456";
-
-        driver.get("https://demo.nopcommerce.com/register");
+        driver.get(HOME_PAGE_URL + "register");
 
         RegisterPage registerPage = new RegisterPage(driver);
         RegistrationResultPage resultPage = registerPage.registerAs("male", "Dummy", "Johnson",
-                "12", "January", "1989", email, "Food Inc.",
-                password, password);
+                "12", "January", "1989", TEST_EMAIL, "Food Inc.",
+                TEST_PASSWORD, TEST_PASSWORD);
 
         assumeTrue(resultPage.getResult().equals("Your registration completed"));
         resultPage.getHeader().logOut();
 
         LoginPage loginPage = resultPage.getHeader().goToLogInPage();
-        loginPage.loginAs(email, password);
+        loginPage.loginAs(TEST_EMAIL, TEST_PASSWORD);
         loginPage.getHeader().clickMyAccount();
         AccountPage account = new AccountPage(driver);
 
@@ -87,7 +85,7 @@ public class LoginTest extends TestBase {
     @ParameterizedTest
     @MethodSource("credentialsAndErrorMessagesProvider")
     public void cannotLoginWithInvalidCredentials(String email, String pass, String expectedError) {
-        driver.get("https://demo.nopcommerce.com/login");
+        driver.get(HOME_PAGE_URL + "login");
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.loginAs(email, pass);
@@ -97,11 +95,11 @@ public class LoginTest extends TestBase {
 
     static Stream<Arguments> credentialsAndErrorMessagesProvider() {
         return Stream.of(
-                arguments("ale.nadasan@mailnesia.com", "wrongPass", "Login was unsuccessful. Please correct the errors and try again." +
+                arguments(TEST_EMAIL, "wrongPass", "Login was unsuccessful. Please correct the errors and try again." +
                         "\nThe credentials provided are incorrect"),
                 arguments("wrongEmail@mailensia.com", "pass", "Login was unsuccessful. Please correct the errors and try again." +
                         "\nNo customer account found"),
-                arguments("ale.nadasan@mailnesia.com", "", "Login was unsuccessful. Please correct the errors and try again." +
+                arguments(TEST_EMAIL, "", "Login was unsuccessful. Please correct the errors and try again." +
                         "\nThe credentials provided are incorrect")
         );
     }

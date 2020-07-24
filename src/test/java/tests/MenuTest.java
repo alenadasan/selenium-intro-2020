@@ -5,12 +5,13 @@ import pages.HomePage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static utils.Constants.HOME_PAGE_URL;
 
 public class MenuTest extends TestBase {
 
     @Test
     void canAccessSubMenuItems() {
-        driver.get("https://demo.nopcommerce.com/");
+        driver.get(HOME_PAGE_URL);
         HomePage homePage = new HomePage(driver);
 
         homePage.getHeaderSection().selectSubMenuItem("Electronics", "Cell phones");

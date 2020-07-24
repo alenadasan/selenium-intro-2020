@@ -10,6 +10,7 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
+import static utils.Constants.HOME_PAGE_URL;
 
 public class HomePageTest extends TestBase {
 
@@ -17,7 +18,7 @@ public class HomePageTest extends TestBase {
 
     @BeforeEach
     void setUp() {
-        driver.get("https://demo.nopcommerce.com/");
+        driver.get(HOME_PAGE_URL);
         homePage = new HomePage(driver);
     }
 
@@ -27,7 +28,7 @@ public class HomePageTest extends TestBase {
         assertThat(driver.getCurrentUrl(), containsString("facebook"));
 
         homePage.getFooterSection().closeCurrentSocialTab();
-        assertThat(driver.getCurrentUrl(), containsString("https://demo.nopcommerce.com/"));
+        assertThat(driver.getCurrentUrl(), containsString(HOME_PAGE_URL));
     }
 
     @Test
@@ -35,7 +36,7 @@ public class HomePageTest extends TestBase {
         List<String> expectedSocialLinks = Arrays.asList(
                 "https://www.facebook.com/nopCommerce",
                 "https://twitter.com/nopCommerce",
-                "https://demo.nopcommerce.com/news/rss/1",
+                HOME_PAGE_URL + "news/rss/1",
                 "https://www.youtube.com/user/nopCommerce");
 
         for (int i = 0; i < 4; i++) {

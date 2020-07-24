@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import static utils.Constants.HOME_PAGE_URL;
+
 /**
  * Created by Ale on 07/08/17.
  */
@@ -25,7 +27,7 @@ public class NullPointerExceptionTest {
 
     @Test
     public void canNavigateToLoginPage() {
-        driver.get("https://demo.nopcommerce.com/login/");
+        driver.get(HOME_PAGE_URL + "login/");
     }
 
     @Test
