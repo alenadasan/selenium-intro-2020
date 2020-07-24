@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends PageBase {
 
@@ -24,6 +25,7 @@ public class LoginPage extends PageBase {
     public LoginPage(WebDriver driver) {
         super(driver);
         header = new HeaderSection(driver);
+        wait.until(ExpectedConditions.urlContains("login"));
     }
 
     public void loginAs(String user, String password) {

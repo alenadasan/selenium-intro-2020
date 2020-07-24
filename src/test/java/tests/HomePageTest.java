@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.HomePage;
 
@@ -7,15 +8,30 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 public class HomePageTest extends TestBase {
 
+    private HomePage homePage;
+
+    @BeforeEach
+    void setUp() {
+        driver.get("https://demo.nopcommerce.com/");
+        homePage = new HomePage(driver);
+    }
+
+    @Test
+    void canNavigateToNOPCommerceFacebookPage() {
+        homePage.getFooterSection().clickOnSocialLinkWithIndex(0);
+        assertThat(driver.getCurrentUrl(), containsString("facebook"));
+
+        homePage.getFooterSection().closeCurrentSocialTab();
+        assertThat(driver.getCurrentUrl(), containsString("https://demo.nopcommerce.com/"));
+    }
+
     @Test
     void canNavigateToSocialNetworkPages() {
-        driver.get("https://demo.nopcommerce.com/");
-        HomePage homePage = new HomePage(driver);
-
         List<String> expectedSocialLinks = Arrays.asList(
                 "https://www.facebook.com/nopCommerce",
                 "https://twitter.com/nopCommerce",

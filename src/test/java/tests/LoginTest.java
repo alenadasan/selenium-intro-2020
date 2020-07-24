@@ -9,6 +9,7 @@ import pages.AccountPage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import pages.RegistrationResultPage;
+import utils.ScreenShotHelper;
 
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -49,6 +50,7 @@ public class LoginTest extends TestBase {
                 password, password);
 
         assumeTrue(resultPage.getResult().equals("Your registration completed"));
+        new ScreenShotHelper(driver).takeScreenshot();
         resultPage.getHeader().logOut();
 
         LoginPage loginPage = resultPage.getHeader().goToLogInPage();
