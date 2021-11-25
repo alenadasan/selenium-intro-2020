@@ -11,11 +11,9 @@ public class TestBase {
 
     @BeforeEach
     public void baseSetUp() {
-        System.setProperty("webdriver.chrome.driver", "src/test/java/resources/chromedriver");
-        System.setProperty("webdriver.gecko.driver", "/Users/Ale/workspace/geckodriver");
+        System.setProperty("webdriver.chrome.driver", "C:\\Workspace\\chromedriver.exe");
 
         driver = new ChromeDriver();
-//        driver = new FirefoxDriver();
     }
 
     @AfterEach

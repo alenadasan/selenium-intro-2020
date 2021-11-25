@@ -24,6 +24,10 @@ public class PageBase {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForWebElementToBeEnabled(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
     public List<String> getTextFromWebElements(List<WebElement> elements) {
         List<String> strings = new ArrayList<>();
 

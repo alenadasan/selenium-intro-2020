@@ -13,7 +13,7 @@ public class LoginPage extends PageBase {
     private WebElement passwordInput;
     @FindBy(xpath = "//a[@href= '/passwordrecovery']")
     private WebElement passwordRecoveryLink;
-    @FindBy(xpath = "//input[@class ='button-1 login-button']")
+    @FindBy(xpath = "//button[text()='Log in']")
     private WebElement loginButton;
     @FindBy(id = "Email-error")
     private WebElement emailError;
@@ -33,6 +33,8 @@ public class LoginPage extends PageBase {
         emailInput.clear();
         emailInput.sendKeys(user);
         passwordInput.sendKeys(password);
+
+        waitForWebElementToBeEnabled(loginButton);
         loginButton.click();
     }
 
